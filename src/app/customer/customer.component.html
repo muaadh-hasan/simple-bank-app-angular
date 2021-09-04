@@ -1,0 +1,24 @@
+<h1> <code>Customers</code> </h1>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">name</th>
+    <th scope="col">gender</th>
+    <th scope="col">number of transactions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let customer of customers">
+    <th scope="row">{{ customer.id }}</th>
+    <td>{{ customer.name }}</td>
+    <td>{{ customer.gender }}</td>
+    <td>{{ customer.numberOfTransaction | number }}</td>
+  </tr>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-between p-2">
+
+</div>
