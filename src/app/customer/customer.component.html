@@ -1,12 +1,14 @@
-<h1> <code>Customers</code> </h1>
+<h5> <code>Customer active now is:</code> {{customers[0].name}} </h5>
+
+<h6>All Customers</h6>
 
 <table class="table table-striped">
   <thead>
   <tr>
     <th scope="col">#</th>
-    <th scope="col">name</th>
-    <th scope="col">gender</th>
-    <th scope="col">number of transactions</th>
+    <th scope="col">Name</th>
+    <th scope="col">Gender</th>
+    <th scope="col">Number of transactions</th>
   </tr>
   </thead>
   <tbody>
@@ -19,6 +21,8 @@
   </tbody>
 </table>
 
-<div class="d-flex justify-content-between p-2">
+<div class="d-flex justify-content-between p-2 flex-row-reverse">
+
+  <a class="nav-link " routerLink="/addCustomer">ADD CUSTOMER</a>
 
 </div>

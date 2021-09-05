@@ -4,7 +4,6 @@ import { Customer } from '../models/Customer';
 
 
 
-const COUNTRIES: Customer[] = [];
 
 
 @Component({

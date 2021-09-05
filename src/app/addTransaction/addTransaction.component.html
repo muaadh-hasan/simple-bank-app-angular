@@ -1,0 +1,54 @@
+<div class="container m-5">
+  <div class="row">
+    <div class="offset-3"></div>
+    <div class="col-md-6">
+      <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && addTransaction()" novalidate class="feedback-form">
+
+        <!-- type -->
+        <div class="form-group">
+          <label for="type">Type of transaction:</label>
+            <!-- Default inline 1-->
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" class="custom-control-input" value="Cash" required
+              id="defaultInline1" name="inlineDefaultRadiosExample" mdbInput [(ngModel)]="transactionModel.type" >
+              <label class="custom-control-label" for="defaultInline1">Cash</label>
+            </div>
+            <!-- Default inline 2-->
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" class="custom-control-input" value = "Credit card" required
+              id="defaultInline2" name="inlineDefaultRadiosExample" mdbInput [(ngModel)]="transactionModel.type">
+              <label class="custom-control-label" for="defaultInline2">Credit card</label>
+            </div>
+
+        </div>
+
+        <!-- Name -->
+        <div class="form-group">
+          <label for="name">Amount</label>
+          <input type="number"
+                 id="amount"
+                 class="form-control"
+                 name="amount"
+                 placeholder="enter amount"
+                 [(ngModel)]="transactionModel.amount"
+                 #amount="ngModel"
+                 [ngClass]="{ 'is-invalid': f.submitted && amount.invalid }"
+                 required/>
+          <!-- input validation group -->
+          <div *ngIf="f.submitted && amount.invalid" class="invalid-input">
+            <!-- individual validation errors -->
+            <div *ngIf="amount.errors?.required">Field is required</div>
+          </div>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-info p-1 m-2">
+          <!-- <i class="fa fa-save-o"></i> -->
+          <span> Add Transaction</span>
+        </button>
+      </form>
+    </div>
+    <div class="offset-3"></div>
+  </div>
+</div>

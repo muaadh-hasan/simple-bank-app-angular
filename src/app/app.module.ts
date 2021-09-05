@@ -9,6 +9,8 @@ import { CustomerComponent } from './customer/customer.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { Router, RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { AddCustomerComponent } from './addCustomer/addCustomer.component';
+import { AddTransactionComponent } from './addTransaction/addTransaction.component';
 
 
 const appRoutes :Routes = [
@@ -19,6 +21,14 @@ const appRoutes :Routes = [
   {
     path:'transaction',
     component:TransactionComponent
+  },
+  {
+    path:'addCustomer',
+    component:AddCustomerComponent
+  },
+  {
+    path:'addTransaction',
+    component:AddTransactionComponent
   },
   {
     path:'',
@@ -36,8 +46,9 @@ const appRoutes :Routes = [
     AppComponent,
     NavigationComponent,
     CustomerComponent,
-    TransactionComponent
-
+    TransactionComponent,
+      AddCustomerComponent,
+      AddTransactionComponent
    ],
   imports: [
     BrowserModule,

@@ -1,3 +1,6 @@
+import { ApiService } from './../shared/api.service';
+import { Transaction } from './../models/Transaction';
+import { transition } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransactionComponent implements OnInit {
 
-  constructor() { }
+  transactions: Transaction[] = [];
+
+  constructor(private apiService:ApiService) { }
 
   ngOnInit() {
+    this.getAllTransaction();
+  }
+
+  public getAllTransaction() {
+    this.apiService.getAllTransactions().subscribe(
+      res => {
+        this.transactions = res;
+      },
+      err => {
+        alert("An error has occurred;")
+      }
+    );
   }
 
 }
