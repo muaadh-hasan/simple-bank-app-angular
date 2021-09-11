@@ -11,6 +11,7 @@ import { Router, RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AddCustomerComponent } from './addCustomer/addCustomer.component';
 import { AddTransactionComponent } from './addTransaction/addTransaction.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 const appRoutes :Routes = [
@@ -55,7 +56,8 @@ const appRoutes :Routes = [
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes, {enableTracing:true})
+    RouterModule.forRoot(appRoutes, {enableTracing:true}),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

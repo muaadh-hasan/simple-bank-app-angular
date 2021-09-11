@@ -2,27 +2,113 @@
   <div class="row">
     <div class="offset-3"></div>
     <div class="col-md-6">
+
       <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && addTransaction()" novalidate class="feedback-form">
 
-        <!-- type -->
+        <!-- Customer id to send -->
         <div class="form-group">
-          <label for="type">Type of transaction:</label>
-            <!-- Default inline 1-->
-            <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" class="custom-control-input" value="Cash" required
-              id="defaultInline1" name="inlineDefaultRadiosExample" mdbInput [(ngModel)]="transactionModel.type" >
-              <label class="custom-control-label" for="defaultInline1">Cash</label>
-            </div>
-            <!-- Default inline 2-->
-            <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" class="custom-control-input" value = "Credit card" required
-              id="defaultInline2" name="inlineDefaultRadiosExample" mdbInput [(ngModel)]="transactionModel.type">
-              <label class="custom-control-label" for="defaultInline2">Credit card</label>
-            </div>
-
+          <label for="customerId">Customer Id</label>
+          <input type="number"
+                id="customerId"
+                class="form-control"
+                name="customerId"
+                placeholder="enter customer id who recive the transaction!"
+                [(ngModel)]="CreditModel.customerId"
+                #customerId="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && customerId.invalid }"
+                required/>
+          <!-- input validation group -->
+          <div *ngIf="f.submitted && customerId.invalid" class="invalid-input">
+            <!-- individual validation errors -->
+            <div *ngIf="customerId.errors?.required">Field is required</div>
+          </div>
         </div>
 
-        <!-- Name -->
+
+
+        <!-- type -->
+          <div class="form-group">
+            <label for="typeTransaction">Type Of Transaction</label>
+            <select required name="typeTransaction" id="typeTransaction"
+            [(ngModel)]="transactionModel.type" class="form-control">
+              <option selected value="CASH">CASH</option>
+              <option value="CREDIT_CARD">CREDIT-CARD</option>
+            </select>
+          </div>
+
+          <div [hidden]="transactionModel.type == 'CASH'" class="form-group m-3">
+
+            <div class="form-control">
+
+              <!-- Card Number -->
+              <div class="form-group">
+                <label for="name">Card Number</label>
+                <input type="number"
+                      id="cardNumber"
+                      class="form-control"
+                      name="cardNumber"
+                      placeholder="enter Card Number"
+                      [(ngModel)]="CreditModel.cardNumber"
+                      #cardNumber="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && cardNumber.invalid }"
+                      required/>
+                <!-- input validation group -->
+                <div *ngIf="f.submitted && cardNumber.invalid" class="invalid-input">
+                  <!-- individual validation errors -->
+                  <div *ngIf="cardNumber.errors?.required">Field is required</div>
+                </div>
+              </div>
+
+              <!-- name of card -->
+              <div class="form-group">
+                <label for="name">Name of Card</label>
+                <input type="text"
+                      id="cardName"
+                      class="form-control"
+                      name="cardName"
+                      placeholder="enter name of Card"
+                      [(ngModel)]="CreditModel.nameOfCard"
+                      #cardName="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && cardName.invalid }"
+                      required/>
+                <!-- input validation group -->
+                <div *ngIf="f.submitted && cardName.invalid" class="invalid-input">
+                  <!-- individual validation errors -->
+                <div [ngIf]="transactionModel.type == 'CREDIT_CARD'" *ngIf="cardName.errors?.required ">Field is required</div>
+                </div>
+              </div>
+
+              <!-- password of card -->
+              <div class="form-group">
+                <label for="name">Password of Card</label>
+                <input type="password"
+                      id="cardPassword"
+                      class="form-control"
+                      name="cardPassword"
+                      placeholder="enter password of Card"
+                      [(ngModel)]="CreditModel.securityCode"
+                      #cardPassword="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && cardPassword.invalid }"
+                      required/>
+                <!-- input validation group -->
+                <div *ngIf="f.submitted && cardPassword.invalid" class="invalid-input">
+                  <!-- individual validation errors -->
+                <div [ngIf]="transactionModel.type == 'CREDIT_CARD'" *ngIf="cardPassword.errors?.required">Field is required</div>
+
+
+
+
+                </div>
+              </div>
+
+
+
+            </div>
+
+          </div>
+
+
+        <!-- Amount -->
         <div class="form-group">
           <label for="name">Amount</label>
           <input type="number"

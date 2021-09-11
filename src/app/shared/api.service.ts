@@ -1,3 +1,4 @@
+import { CreditCard } from './../models/CreditCard';
 import { transition } from '@angular/animations';
 import { Transaction } from './../models/Transaction';
 import { Customer } from './../models/Customer';
@@ -19,6 +20,7 @@ export class ApiService {
   private ADD_CUSTOMER_URL = `${this.BASE_URL}\\customers\\add\\`;
   private ALL_TRANSACTION_URL = `${this.BASE_URL}\\transactions\\all`;
   private ADD_TRANSACTION_URL = `${this.BASE_URL}\\transactions\\add\\`;
+  private ADD_CreditCard_URL = `${this.BASE_URL}\\CreditCard\\add\\`;
 
 constructor(private http: HttpClient) { }
 
@@ -34,8 +36,15 @@ addCustomer(customer:Customer): Observable<Customer> {
   return this.http.post<Customer>(this.ADD_CUSTOMER_URL,customer);
 }
 
-addTransAction(transition:Transaction): Observable<Transaction> {
-  return this.http.post<Transaction>(this.ADD_TRANSACTION_URL,transition);
+addTransAction(transition:Transaction,creditCard:CreditCard): Observable<Transaction> {
+  if(transition.type=="CASH"){
+    return this.http.post<Transaction>(this.ADD_TRANSACTION_URL,transition);
+  }else{
+    this.http.post<CreditCard>(this.ADD_CreditCard_URL,creditCard);
+    return this.http.post<Transaction>(this.ADD_TRANSACTION_URL,transition);
+  }
+
+
 }
 
 }

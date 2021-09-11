@@ -1,3 +1,4 @@
+import { CreditCard } from './../models/CreditCard';
 import { Router } from '@angular/router';
 import { Transaction } from './../models/Transaction';
 import { ApiService } from './../shared/api.service';
@@ -11,11 +12,21 @@ import { Component, OnInit } from '@angular/core';
 export class AddTransactionComponent implements OnInit {
 
 
-   transactionModel: Transaction = {
-     type: '',
-     date: '',
-     amount: 0
-   }
+
+  CreditModel : CreditCard = {
+    nameOfCard: '',
+    date: '',
+    securityCode: '',
+    cardNumber: 0,
+    customerId: 0
+  }
+
+
+  transactionModel: Transaction = {
+    type: "CASH",
+    date: '',
+    amount: 0
+  }
 
   constructor(private apiService:ApiService) { }
 
@@ -23,9 +34,10 @@ export class AddTransactionComponent implements OnInit {
   }
 
   public addTransaction() {
-    this.apiService.addTransAction(this.transactionModel).subscribe(
+    // alert(this.transactionModel.amount + this.transactionModel.type + this.transactionModel.date);
+    this.apiService.addTransAction(this.transactionModel,this.CreditModel).subscribe(
       res => {
-        location.replace("http://localhost:4200/transaction");
+        location.replace("http:/localhost:8082/transactions");
       },
       err => {
         alert("An error has occurred;")
